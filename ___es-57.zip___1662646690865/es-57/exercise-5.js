@@ -1,23 +1,5 @@
 function sortPeopleByAge(arr) {
-  let sorted = [];
-  let copyarr = JSON.parse(JSON.stringify(arr));
-
-  while (copyarr.length > 1) {
-    let min = copyarr[0];
-    let minIndex = 0;
-    for (let i = 1; i < copyarr.length; i++) {
-      if (copyarr[i].age < min.age) {
-        min = copyarr[i];
-        minIndex = i;
-      } else {
-        continue;
-      }
-    }
-    copyarr.splice(minIndex, 1);
-    sorted.push(min);
-  }
-  sorted.push(copyarr[0]);
-  return sorted;
+  arr.sort((a, b) => a.age - b.age);
 }
 
 const people = [
@@ -33,5 +15,5 @@ const people = [
   { name: "Alice", age: 28 },
 ];
 
-const sortingByAge = sortPeopleByAge(people);
-console.log(sortingByAge);
+sortPeopleByAge(people);
+console.log(people);
