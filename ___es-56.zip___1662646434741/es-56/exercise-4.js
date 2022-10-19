@@ -1,24 +1,14 @@
 function uncompletedNotes(notes) {
-  let uncompleted = JSON.parse(JSON.stringify(notes));
-  for (let i = 0; i < uncompleted.length; i++) {
-    let count = 0;
-
-    for (let j = 0; j < uncompleted[i].todos.length; j++) {
-      if (uncompleted[i].todos[j].done === true) {
-        uncompleted[i].todos.splice(j, 1);
-        j--;
-      } else {
-        count++;
-      }
-    }
-    if (count === 0) {
-      uncompleted.splice(i, 1);
-      i--;
+  const uncompleted = notes.map((el) => {
+    el.todos = el.todos.filter((elem) => elem.done === false);
+    if (el.todos.length !== 0) {
+      return el;
     } else {
-      continue;
+      return false;
     }
-  }
-  return uncompleted;
+  });
+  const fUncompleted = uncompleted.filter((el) => el !== false);
+  return fUncompleted;
 }
 
 const notes = [
